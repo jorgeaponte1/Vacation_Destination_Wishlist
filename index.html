@@ -23,6 +23,7 @@
           <input
             type="text"
             id="name"
+            minlength="2"
             placeholder=" Enter the name of the destination"
             name="destination"
             required
@@ -33,6 +34,7 @@
           <input
             type="text"
             id="location"
+            minlength="2"
             placeholder=" Where is it located?"
             name="location"
             required
@@ -48,9 +50,10 @@
           />
         </div>
         <div class="form-style">
-          <label for="description">Description</label><br />
+          <label for="description">Description (250 character limit)</label><br />
           <textarea
             id="description"
+            maxlength="250"
             placeholder="Where is it located?"
             name="description"
           ></textarea>
