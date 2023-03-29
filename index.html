@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vacation Destinations Wishlist</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="tophalf">
+      <h1 class="heading">Vacation Destinations Wishlist</h1>
+      <p class="message">
+        Found exciting places for visition on your next vacation? Use the form
+        below to add them to your wishlist
+      </p>
+    </div>
+
+    <div class="container">
+      <form class="wishlist-form">
+        <div class="form-style">
+          <label for="name">Destination name</label><br />
+          <input
+            type="text"
+            id="name"
+            placeholder=" Enter the name of the destination"
+            name="destination"
+            required
+          />
+        </div>
+        <div class="form-style">
+          <label for="location">Location</label>
+          <input
+            type="text"
+            id="location"
+            placeholder=" Where is it located?"
+            name="location"
+            required
+          />
+        </div>
+        <div class="form-style">
+          <label for="photo">Photo</label>
+          <input
+            type="url"
+            id="photo"
+            name="photo"
+            placeholder=" Enter an image url of the place"
+          />
+        </div>
+        <div class="form-style">
+          <label for="description">Description</label><br />
+          <textarea
+            id="description"
+            placeholder="Where is it located?"
+            name="description"
+          ></textarea>
+        </div>
+        <div class="form-style">
+          <button type="submit">Add to list</button>
+        </div>
+      </form>
+      <div class="destination-details">
+        <p id="details-title">Enter destination details</p>
+        <div class="wishlist-container"></div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,265 @@
+.heading {
+  position: relative;
+  text-align: center;
+  font-size: 50px;
+  font-family: sans-serif;
+  font-weight: normal;
+  margin-bottom: -10px;
+}
+
+.message {
+  position: relative;
+}
+
+body {
+  background-color: antiquewhite;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+
+.destination-details {
+  max-width: 75%;
+  text-align: center;
+  border: none;
+  font-size: 25px;
+  flex: 0 0 75%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#details-title {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.tophalf {
+  position: relative;
+  border: 0px solid;
+  margin-top: -40px;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-top: 80px;
+  padding-bottom: 55px;
+  margin-bottom: 40px;
+  color: #00036c;
+}
+
+.tophalf::before{
+  content: '';
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url('https://maiden-voyage-travel.com/wp-content/uploads/2017/07/fc87fee1fb262de65cb8a7b5e586a1b0.jpg');
+  background-size: 100% 100%;
+  opacity: 0.5;
+}
+
+.wishlist-form {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.message {
+  text-align: center;
+  font-size: 20px;
+}
+
+.form-style {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  max-width: 100%;
+  font-size: 18px;
+}
+
+input[type="text"] {
+  height: 33px;
+  width: 97%;
+  margin-top: 8px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+}
+
+input[type="url"] {
+  height: 30px;
+  width: 97%;
+  margin-top: 10px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+}
+
+button[type="submit"] {
+  border: none;
+  width: 100%;
+  height: 40px;
+  background-color: rgb(69, 118, 190);
+  color: white;
+  border-radius: 7px;
+  font-size: 15px;
+  font-family: sans-serif;
+  cursor: pointer;
+
+  -webkit-box-shadow: 0px 6px 0px rgb(0, 64, 160);
+  -moz-box-shadow: 0px 6px 0px rgb(0, 64, 160);
+  box-shadow: 0px 6px 0px rgb(0, 64, 160);
+}
+
+button[type="submit"]:active {
+  -webkit-box-shadow: 0px 2px 0px rgb(0, 64, 160);
+  -moz-box-shadow: 0px 2px 0px rgb(0, 64, 160);
+  box-shadow: 0px 2px 0px rgb(0, 64, 160);
+  position: relative;
+  top: 4px;
+}
+
+textarea#description {
+  resize: vertical;
+  width: 95%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  padding: 5px;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1214px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 710px;
+  }
+
+  .wishlist-form {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  textarea#description{
+    width: 96%;
+  }
+
+  button[type="submit"]{
+    width: 98%;
+  }
+}
+
+.wishlist-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h4 {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+.card-content p {
+  text-align: left;
+  font-size: 18px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.edit-button {
+  background-color: rgb(228, 197, 21);
+  color: black;
+  border: 0 solid;
+  border-radius: 5px;
+  height: 40px;
+  width: 50px;
+  margin-left: 10px;
+  margin-right: 75px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
+  -webkit-box-shadow: 0px 6px 0px rgb(180, 147, 0);
+  -moz-box-shadow: 0px 6px 0px rgb(180, 147, 0);
+  box-shadow: 0px 6px 0px rgb(180, 147, 0);
+}
+
+.remove-button {
+  background-color: red;
+  color: white;
+  border: 0 solid;
+  border-radius: 5px;
+  height: 40px;
+  width: 80px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+
+  -webkit-box-shadow: 0px 6px 0px rgb(100, 0, 0);
+  -moz-box-shadow: 0px 6px 0px rgb(100, 0, 0);
+  box-shadow: 0px 6px 0px rgb(100, 0, 0);
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(33, 96, 190);
+}
+
+.edit-button:hover {
+  background-color: rgb(211, 179, 38);
+}
+
+.edit-button:active {
+  -webkit-box-shadow: 0px 2px 0px rgb(180, 147, 0);
+  -moz-box-shadow: 0px 2px 0px rgb(180, 147, 0);
+  box-shadow: 0px 2px 0px rgb(180, 147, 0);
+  position: relative;
+  top: 4px;
+}
+
+.remove-button:active {
+  -webkit-box-shadow: 0px 2px 0px rgb(180, 0, 0);
+  -moz-box-shadow: 0px 2px 0px rgb(180, 0, 0);
+  box-shadow: 0px 2px 0px rgb(180, 0, 0);
+  position: relative;
+  top: 4px;
+}
