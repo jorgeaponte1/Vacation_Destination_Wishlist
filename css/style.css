@@ -54,14 +54,14 @@ body {
   color: #00036c;
 }
 
-.tophalf::before{
-  content: '';
+.tophalf::before {
+  content: "";
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
-  background-image: url('https://maiden-voyage-travel.com/wp-content/uploads/2017/07/fc87fee1fb262de65cb8a7b5e586a1b0.jpg');
+  background-image: url("https://maiden-voyage-travel.com/wp-content/uploads/2017/07/fc87fee1fb262de65cb8a7b5e586a1b0.jpg");
   background-size: 100% 100%;
   opacity: 0.5;
 }
@@ -127,6 +127,7 @@ textarea#description {
   resize: vertical;
   width: 95%;
   height: 50px;
+  max-height: 150px;
   margin-top: 10px;
   border-radius: 3px;
   border: 1px solid lightgray;
@@ -151,11 +152,11 @@ textarea#description {
     max-width: 100%;
   }
 
-  textarea#description{
+  textarea#description {
     width: 96%;
   }
 
-  button[type="submit"]{
+  button[type="submit"] {
     width: 98%;
   }
 }

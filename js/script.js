@@ -1,7 +1,7 @@
 const form = document.querySelector(".wishlist-form");
 const detailTitle = document.querySelector("#details-title");
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   let destination = document.querySelector("#name").value;
@@ -9,22 +9,53 @@ form.addEventListener("submit", (e) => {
   let photo = document.querySelector("#photo").value;
   let description = document.querySelector("#description").value;
 
-  addCard(destination, location, photo, description);
+  await addCard(destination, location, photo, description);
 
   detailTitle.textContent = "My WishList";
 
   form.reset();
 });
 
-let addCard = (destinationName, locationName, photoURL, descriptionName) => {
+let getAPICall = async () => {
+  let apiKey = "2Fc17Cyoax-nMrPFLNCK_8g889D143mcpT2K2fVCeGI";
+  let query =
+    document.querySelector("#name").value +
+    " " +
+    document.querySelector("#location").value;
+  console.log(query);
+  let apiUrl = `https://api.unsplash.com/search/photos?query=${query}&orientation=landscape&client_id=${apiKey}`;
+
+  try {
+    let randomNumber = Math.floor(Math.random() * 10);
+    return await fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        let allImages = data.results[randomNumber];
+        return allImages.urls.small;
+      });
+  } catch (error) {
+    console.log("Image not found", error);
+  }
+};
+
+let addCard = async (
+  destinationName,
+  locationName,
+  photoURL,
+  descriptionName
+) => {
+  let photoAPI;
+  if (photoURL) {
+    photoAPI = photoURL;
+  } else {
+    photoAPI = await getAPICall();
+  }
+
   let card = {
     destination: destinationName,
     location: locationName,
-    photo: {
-      url:
-        photoURL ||
-        "https://me.ahasayen.com/wp-content/uploads/2017/06/Travel-safety-tips-21.jpg",
-    },
+    photo: photoAPI,
     description: descriptionName,
   };
 
@@ -38,7 +69,7 @@ let createCardElement = (card) => {
   cardElement.className = "card";
 
   const cardImage = document.createElement("img");
-  cardImage.src = card.photo.url;
+  cardImage.src = card.photo;
   cardElement.appendChild(cardImage);
 
   const cardContent = document.createElement("div");
@@ -72,25 +103,74 @@ let createCardElement = (card) => {
     cardElement.remove();
   });
 
-  cardEdit.addEventListener("click", () => {
-    const newDestination = window.prompt("Enter new name");
-    const newLocation = window.prompt("Enter a new location");
-    const newPhoto = window.prompt("Enter new photo URL");
+  const toggleEditMode = (edit) => {
+    if (edit) {
+      cardDestination.style.display = "none";
+      cardLocation.style.display = "none";
+      cardDescription.style.display = "none";
 
-    if (newDestination !== "" && newDestination !== null) {
-      cardDestination.innerText = newDestination;
-    }
+      const cardDestinationInput = document.createElement("input");
+      cardDestinationInput.type = "text";
+      cardDestinationInput.value = card.destination;
+      cardDestinationInput.className = "card-destination-input";
+      cardContent.appendChild(cardDestinationInput);
 
-    if (newLocation !== "" && newLocation !== null) {
-      cardLocation.innerText = newLocation;
-    }
+      const cardLocationInput = document.createElement("input");
+      cardLocationInput.type = "text";
+      cardLocationInput.value = card.location;
+      cardLocationInput.className = "card-location-input";
+      cardContent.appendChild(cardLocationInput);
 
-    if (newPhoto !== "" && newPhoto !== null) {
-      cardImage.src = newPhoto;
+      const cardDescriptionInput = document.createElement("textarea");
+      cardDescriptionInput.maxLength = "250";
+      cardDescriptionInput.value = card.description;
+      cardDescriptionInput.style.resize = "vertical";
+      cardDescriptionInput.style.maxHeight = "150px";
+      cardDescriptionInput.style.width = "150px";
+      cardDescriptionInput.className = "card-description-input";
+      cardContent.appendChild(cardDescriptionInput);
+
+      cardDestinationInput.addEventListener("change", () => {
+        card.destination = cardDestinationInput.value;
+      });
+
+      cardLocationInput.addEventListener("change", () => {
+        card.location = cardLocationInput.value;
+      });
+
+      cardDescriptionInput.addEventListener("change", () => {
+        card.description = cardDescriptionInput.value;
+      });
     } else {
-      cardImage.src = card.photo.url;
+      cardDestination.style.display = "block";
+      cardLocation.style.display = "block";
+      cardDescription.style.display = "block";
+
+      cardDestination.innerText = card.destination;
+      cardLocation.innerText = card.location;
+      cardDescription.innerText = card.description;
+
+      const cardDestinationInput = cardContent.querySelector(
+        ".card-destination-input"
+      );
+      const cardLocationInput = cardContent.querySelector(
+        ".card-location-input"
+      );
+      const cardDescriptionInput = cardContent.querySelector(
+        ".card-description-input"
+      );
+
+      cardDestinationInput.remove();
+      cardLocationInput.remove();
+      cardDescriptionInput.remove();
     }
+  };
+
+  cardEdit.addEventListener("click", () => {
+    const isInEditMode =
+      cardContent.querySelector(".card-destination-input") !== null;
+    toggleEditMode(!isInEditMode);
   });
 
   return cardElement;
-}
+};
